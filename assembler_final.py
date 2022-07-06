@@ -24,7 +24,7 @@ def decimalToBinary(decimal):
     return binrep.zfill(8)
     
     
-def typeAerrors(listA):
+def typeAerrors(listA , counter):
     if(len(listA)==4):
         re1 = returnRegister(listA[1])
         re2 = returnRegister(listA[2])
@@ -33,29 +33,29 @@ def typeAerrors(listA):
             return 1
         else:
             if (re1==0):
-                print("syntax error: " + listA[1] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[1] + " is an invalid input for register")
                 quit()
             if (re2==0):
-                print("syntax error: " + listA[2] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[2] + " is an invalid input for register")
                 quit()
             if (re3==0):
-                print("syntax error: " + listA[3] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[3] + " is an invalid input for register")
                 quit()
             if (re1=="111"):
-                print("syntax error: FLAGS have been used instead of reg1")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg1")
                 quit()
             if (re2=="111"):
-                print("syntax error: FLAGS have been used instead of reg2")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg2")
                 quit()
             if (re3=="111"):
-                print("syntax error: FLAGS have been used instead of reg3")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg3")
                 quit()
     else:
-        print("syntax error: incorrect number of operands. required operands are 3 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operands are 3 and given are " + str(len(listA)-1))
         quit()
        
         
-def typeBerrors(listA):
+def typeBerrors(listA , counter):
     if(len(listA)==3):
         re1 = returnRegister(listA[1])
         if (re1!=0 and re1!="111"):
@@ -65,21 +65,21 @@ def typeBerrors(listA):
             if (num<=255 and num>=0):
                 return 1
             else:
-                print("syntax error: invalid input of imm value. the range should be 0 to 255")
+                print("syntax error " + "in line " + str(counter) + ": " + "invalid input of imm value. the range should be 0 to 255")
                 quit()
         else:
             if(re1==0):
-                print("syntax error: " + listA[1] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[1] + " is an invalid input for register")
                 quit()
             if (re1=="111"):
-                print("syntax error: FLAGS have been used instead of reg1")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg1")
                 quit()
     else:
-        print("syntax error: incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
         quit()
     
             
-def typeCerrors(listA):
+def typeCerrors(listA , counter):
     if(len(listA)==3):
         re1 = returnRegister(listA[1])
         re2 = returnRegister(listA[2])
@@ -87,23 +87,23 @@ def typeCerrors(listA):
             return 1
         else:
             if (re1==0):
-                print("syntax error: " + listA[1] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[1] + " is an invalid input for register")
                 quit()
             if (re2==0):
-                print("syntax error: " + listA[2] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[2] + " is an invalid input for register")
                 quit()
             if (re1=="111"):
-                print("syntax error: FLAGS have been used instead of reg1")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg1")
                 quit()
             if (re2=="111"):
-                print("syntax error: FLAGS have been used instead of reg2")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg2")
                 quit()
     else:
-        print("syntax error: incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
         quit()
         
         
-def typeDerrors(listA, listOfVar, label_dict, addressOfVar):
+def typeDerrors(listA, listOfVar, label_dict, addressOfVar , counter):
     check_var = 0
     if(len(listA)==3):
         re1 = returnRegister(listA[1])
@@ -113,43 +113,43 @@ def typeDerrors(listA, listOfVar, label_dict, addressOfVar):
                     check_var=1
                     return addressOfVar[i]
             if(check_var==0):
-                print("syntax error: wrong variable " + listA[2] + " has been used ")
+                print("syntax error " + "in line " + str(counter) + ": " + "wrong variable " + listA[2] + " has been used ")
                 quit()
             if (listA[2] in label_dict):
-                print("syntax error: label is being used as a variable")
+                print("syntax error " + "in line " + str(counter) + ": " + "label is being used as a variable")
                 quit()
         else:
             if(re1==0):
-                print("syntax error: " + listA[1] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[1] + " is an invalid input for register")
                 quit()
             if (re1=="111"):
-                print("syntax error: FLAGS have been used instead of reg1")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg1")
                 quit()
             if(len(listOfVar)==0):
-                print("syntax error: no variable declaration but variable " + listA[2] + " has been used")
+                print("syntax error " + "in line " + str(counter) + ": " + "no variable declaration but variable " + listA[2] + " has been used")
                 quit()
     else:
-        print("syntax error: incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
         quit()
 
     
-def typeEerrors(listA, listOfVar , label_dict):
+def typeEerrors(listA, listOfVar , label_dict , counter ):
     if(len(listA)==2):
         if (listA[1] in listOfVar):
-            print("syntax error: variable is being used as a label")
+            print("syntax error " + "in line " + str(counter) + ": " + "variable is being used as a label")
             quit()
         elif (listA[1] in label_dict):
-            print("syntax error: label " + listA[1] + " does not exist" )
+            print("syntax error " + "in line " + str(counter) + ": " + "label " + listA[1] + " does not exist" )
             quit()
         else:
             mem_addr = label_dict[listA[1]] 
             return mem_addr
     else:
-        print("syntax error: incorrect number of operands. required operand is 1 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operand is 1 and given are " + str(len(listA)-1))
         quit()
         
 
-def mov_error(listA):
+def mov_error(listA , counter):
     if(len(listA)==3):
         re1 = returnRegister(listA[1])
         re2 = returnRegister(listA[2])
@@ -157,47 +157,48 @@ def mov_error(listA):
             return 1
         else:
             if (re1==0):
-                print("syntax error: " + listA[1] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[1] + " is an invalid input for register")
                 quit()
             if (re2==0):
-                print("syntax error: " + listA[2] + "is an invalid input for register")
+                print("syntax error " + "in line " + str(counter) + ": " + listA[2] + " is an invalid input for register")
                 quit()
             if (re1=="111"):
-                print("syntax error: FLAGS have been used instead of reg1")
+                print("syntax error " + "in line " + str(counter) + ": " + "FLAGS have been used instead of reg1")
                 quit()
     else:
-        print("syntax error: incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
+        print("syntax error " + "in line " + str(counter) + ": " + "incorrect number of operands. required operands are 2 and given are " + str(len(listA)-1))
         quit()
     
         
-def check_valid_label(label_name, var_dict):
+def check_valid_label(label_name, var_dict , counter ):
     # if label not valid print error and quit program
     if(label_name in var_dict):
-        print("syntax error: variable cannot be used as a label" + str(label_name))
+        print("syntax error " + "in line " + str(counter) + ": " + "variable cannot be used as a label" + str(label_name))
         quit()
 
 
-def extract_label(content_list, i, label_dict, var_dict):
+def extract_label(content_list, i, label_dict, var_dict , counter ):
     list1 = (content_list[i]).split(":")
     if (len(list1)==2):
-        check_valid_label(list1[0], var_dict)
+        check_valid_label(list1[0], var_dict , counter)
         label_dict[list1[0]]=i 
     elif (len(list1)>2):
-        print("syntax error")
+        print("syntax error " + "in line " + str(counter))
         quit()
     # else:
     #     print("syntax error: input label is not correct")
     #     quit()
 
     
-def check_halt(content_list):
+def check_halt(content_list , counter):
+    halt_checker=0
     # checking presence of halt
     for line in content_list:
         listA = line.split()
         if (listA[0] == "hlt"):
             halt_checker=int(1)
     if (halt_checker!=1):
-        print("syntax error: halt instruction missing")
+        print("syntax error " + "in line " + str(counter) + ": " + "halt instruction missing")
         quit()
     # checking if halt is last instruction or not
     main_lst = []
@@ -205,7 +206,7 @@ def check_halt(content_list):
         a = content_list[i].split()
         main_lst.append(a)
     if (main_lst[len(content_list)-1][0]!="hlt"):
-        print("syntax error: last instruction is not halt")
+        print("syntax error " + "in line " + str(counter) + ": " + "last instruction is not halt")
         quit()       
      
 #returning binary code for each line
@@ -290,18 +291,25 @@ JumpIfEqual = "01111"
 Halt = "01010"
 
 #reading input line by line
-with open("data_file.txt") as f:
-    content_list = f.readlines()
-    while "" in content_list:
-        content_list.remove("")
+content_list = []
+while True:
+    try:
+        content_list.append(input()) # Or whatever prompt you prefer to use.
+    except EOFError:
+        break
+    
+while "" in content_list:
+    content_list.remove("")
 binary_output = []
 instructionCounter = 0
 varCounter = 0
 listOfVar = []
 addressOfVar = []
-halt_checker = int(0)    
-    
+halt_checker = int(0)   
 
+counter = 1        
+    
+check_halt(content_list , counter)
 
 #checking if variabe name is correct or not
 for line in content_list:
@@ -312,15 +320,13 @@ for line in content_list:
             var_dict[listA[1]]=0
             varCounter = varCounter + 1
         elif(listA [0] == "var" and len(listA)!=2):
-            print("syntax error: invalid variable name , variable name cannot include spaced characters ")
+            print("syntax error " + "in line " + str(counter) + ": " + "invalid variable name , variable name cannot include spaced characters ")
             quit()
         else:
             instructionCounter = instructionCounter + 1
     else:
         pass
 
-        
-    
 for i in range(varCounter):
     bi = decimalToBinary(instructionCounter)
     addressOfVar.append(bi)
@@ -329,7 +335,7 @@ for i in range(varCounter):
 program_len = len(content_list)
 
 for i in range(varCounter , program_len):
-    extract_label(content_list, i-varCounter, label_dict, var_dict)
+    extract_label(content_list, i-varCounter, label_dict, var_dict , counter)
     
 
 #dealing each input one by one
@@ -338,11 +344,12 @@ for line in range(varCounter,len(content_list)):
         pass
     else:
         listA = content_list[line].split() 
-        
+        if (":" in listA[0]):
+            listA = listA[1:]
         
         #addition
         if listA[0] == "add":
-            typeAerrors(listA) 
+            typeAerrors(listA , counter) 
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -352,7 +359,7 @@ for line in range(varCounter,len(content_list)):
                 
         #subtraction
         elif listA[0] == "sub": 
-            typeAerrors(listA) 
+            typeAerrors(listA , counter) 
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -365,7 +372,7 @@ for line in range(varCounter,len(content_list)):
             char = listA[2]
             char = char[:1]     
             if(char == "$"):
-                typeBerrors(listA) 
+                typeBerrors(listA , counter) 
                 re1 = returnRegister(listA[1])
                 val = listA[2]
                 val = val[1:]
@@ -373,7 +380,7 @@ for line in range(varCounter,len(content_list)):
                 bi = decimalToBinary(num)
                 binary_output.append(returnCode(MoveImmediate, re1, 0, 0, 0, bi))         
             else:
-                mov_error(listA)
+                mov_error(listA , counter)
                 re1 = returnRegister(listA[1])
                 re2 = returnRegister(listA[2])
                 
@@ -382,7 +389,7 @@ for line in range(varCounter,len(content_list)):
             
         #load value
         elif listA[0] == "ld":
-            typeDerrors(listA, listOfVar, label_dict, addressOfVar)
+            typeDerrors(listA, listOfVar, label_dict, addressOfVar , counter)
             re1 = returnRegister(listA[1])
             
             binary_output.append(returnCode(Load, re1, 0, 0, typeDerrors(listA, listOfVar, label_dict, addressOfVar) , 0))
@@ -390,7 +397,7 @@ for line in range(varCounter,len(content_list)):
         
         #store
         elif listA[0] == "st": 
-            typeDerrors(listA, listOfVar, label_dict, addressOfVar)
+            typeDerrors(listA, listOfVar, label_dict, addressOfVar , counter)
             re1 = returnRegister(listA[1])
             
             binary_output.append(returnCode(Store, re1, 0, 0, typeDerrors(listA, listOfVar, label_dict, addressOfVar), 0))
@@ -398,7 +405,7 @@ for line in range(varCounter,len(content_list)):
             
         #multiply
         elif listA[0] == "mul":  
-            typeAerrors(listA)
+            typeAerrors(listA , counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -407,7 +414,7 @@ for line in range(varCounter,len(content_list)):
 
         #divide
         elif listA[0] == "div":
-            typeCerrors(listA) 
+            typeCerrors(listA , counter) 
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
                 
@@ -416,7 +423,7 @@ for line in range(varCounter,len(content_list)):
 
         #rightShift
         elif listA[0] == "rs":  
-            typeBerrors(listA)
+            typeBerrors(listA , counter)
             re1 = returnRegister(listA[1])
             val = listA[2]
             val = val[1:]
@@ -426,7 +433,7 @@ for line in range(varCounter,len(content_list)):
 
         #leftShift
         elif listA [0] == "ls":
-            typeBerrors(listA)
+            typeBerrors(listA , counter)
             re1 = returnRegister(listA[1])
             val = listA[2]
             val = val[1:]
@@ -437,7 +444,7 @@ for line in range(varCounter,len(content_list)):
                 
         #exclusive OR
         elif listA[0] == "xor":  
-            typeAerrors(listA)
+            typeAerrors(listA , counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -447,7 +454,7 @@ for line in range(varCounter,len(content_list)):
 
         #OR
         elif listA[0] == "or":  
-            typeAerrors(listA)
+            typeAerrors(listA , counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -457,7 +464,7 @@ for line in range(varCounter,len(content_list)):
 
         #AND
         elif listA[0] == "and":  
-            typeAerrors(listA)
+            typeAerrors(listA , counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
             re3 = returnRegister(listA[3])
@@ -466,7 +473,7 @@ for line in range(varCounter,len(content_list)):
 
         #invert
         elif listA[0] == "not":  
-            typeCerrors(listA)
+            typeCerrors(listA, counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
                 
@@ -475,7 +482,7 @@ for line in range(varCounter,len(content_list)):
 
         #compare
         elif listA[0] == "cmp":  
-            typeCerrors(listA)
+            typeCerrors(listA , counter)
             re1 = returnRegister(listA[1])
             re2 = returnRegister(listA[2])
                 
@@ -484,28 +491,28 @@ for line in range(varCounter,len(content_list)):
 
         #unconditional jump
         elif listA [0] == "jmp":
-            typeEerrors(listA, listOfVar , label_dict)
+            typeEerrors(listA, listOfVar , label_dict, counter )
             
             binary_output.append(returnCode(UnconditionalJump, 0, 0, 0, typeEerrors(listA, listOfVar , label_dict), 0))
             
 
         #jump if less than
         elif listA [0] == "jlt":  
-            typeEerrors(listA, listOfVar , label_dict)
+            typeEerrors(listA, listOfVar , label_dict , counter )
             
             binary_output.append(returnCode(JumpIfLessThan, 0, 0, 0, typeEerrors(listA, listOfVar , label_dict), 0))
             
         
         # jump if greater than 
         elif listA [0] == "jgt":  
-            typeEerrors(listA, listOfVar , label_dict)
+            typeEerrors(listA, listOfVar , label_dict , counter )
             
             binary_output.append(returnCode(JumpIfGreaterThan, 0, 0, 0, typeEerrors(listA, listOfVar , label_dict), 0))
         
         
         #jump if equal
         elif listA [0] == "je":
-            typeEerrors(listA, listOfVar , label_dict) 
+            typeEerrors(listA, listOfVar , label_dict , counter) 
             
             binary_output.append(returnCode(JumpIfEqual, 0, 0, 0, typeEerrors(listA, listOfVar , label_dict), 0))
             
@@ -513,19 +520,23 @@ for line in range(varCounter,len(content_list)):
         #halt
         elif listA [0] == "hlt": 
             binary_output.append(returnCode(Halt, 0, 0, 0, 0, 0))
-            
+        
+        
         #incorrect opCode
         else:
             if(listA[0]=="var"):
-                print("syntax error: variable declaration has been done in middle of the code. it should be done at the start")
+                print("syntax error: variable declaration has been done in middle of the code in line " + str(counter +1) + ". it should be done at the start")
                 quit()
             else:
-                print("syntax error: incorrect opCode input " + listA[0])
+                print("syntax error: incorrect opCode input " + str(listA[0]) + " in line " + str(counter+1) )
                 quit()
                 
-g = open("binary.txt", "w+")
+        counter = counter + 1
+        
+        
+
 strI = ""
 for output in binary_output:
     strI = strI + output + "\n"
-g.write(strI)
-g.close()
+
+print(strI)
